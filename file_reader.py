@@ -16,7 +16,7 @@ class dostuff():
                 if self.data["TYPE"] == offense.upper():
                     newshit.append(record)
 
-        if month_range or date_range != None:
+        if month_range or date_range is not None:
             for record in self.data:
                 if self.data["YEAR"] == 2023:
                     if self.data["MONTH"] <= month_range[1] and self.data["MONTH"] >= month_range[0]:
