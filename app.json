@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "googlymaps",
-    "slug": "googlymaps",
+    "name": "sergeantdog",
+    "slug": "sergeantdog",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/appicon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "default",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
