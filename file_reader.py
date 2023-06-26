@@ -1,44 +1,42 @@
-#read files and send api request
 import json
 import datetime
-class dostuff():
-    def __innit__(self, data, date, month):
+
+class DoStuff:
+    def __init__(self, data, date, month):
         self.stats = data
         self.date = date
         self.month = month
-    
-    def filter_events(self,offense,month_range,date_range):
+
+    def filter_events(self, offense, month_range, date_range):
         newshit = []
         
-        #filtering a singular offense. !!! make it able to filter multiple later
-        if offense != None:
-            for record in self.data:
-                if self.data["TYPE"] == offense.upper():
+        if offense is not None:
+            for record in self.stats:
+                if record["TYPE"] == offense.upper():
                     newshit.append(record)
 
-        if month_range or date_range != None:
-            for record in self.data:
-                if self.data["YEAR"] == 2023:
-                    if self.data["MONTH"] <= month_range[1] and self.data["MONTH"] >= month_range[0]:
-                        newshit.append(record)
+        if month_range or date_range is not None:
+            for record in self.stats:
+                if record["YEAR"] == 2023:
+                    if record["MONTH"] <= month_range[1] and record["MONTH"] >= month_range[0]:
+                        if record["DAY"] <= date_range[1] and record["DAY"] >= date_range[0]:
+                            newshit.append(record)
         
-        return newshit   
-
-
-    def fib(self):
-        print('something happened')
-        print(self.data, self.current_date, self.current_month)
+        return newshit
 
 # Get the current date
 current_date = datetime.date.today()
-
+current_date = str(current_date)
+current_date = current_date[8:10]
+current_date = int(current_date)
 # Get the current month
 current_month = datetime.date.today().month
+current_month = int(current_month)
 
 # Read JSON file (current path specifically on my pc)
 with open("C:/Users/iansh/Downloads/crimedata_csv_AllNeighbourhoods_2023_1 (1).json") as f:
-  data = json.load(f)
+  data = json.load(f)  # Your JSON data here
 
-
-inst = dostuff(data,current_date,current_month)
-inst.__init__(data,current_date,current_month)
+inst = DoStuff(data, current_date, current_month)
+results = inst.filter_events('Mischief', [1, 3], [4, 6])
+print(results)
